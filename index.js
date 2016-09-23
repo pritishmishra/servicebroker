@@ -59,3 +59,7 @@ app.get('/v2/catalog', function(req, res){
 		);
 	
 });
+
+var server = app.listen(process.env.PORT || 8002, function () {
+	console.log('Service Broker running');
+});
