@@ -1,0 +1,7 @@
+---
+applications:
+- name: demo-service-broker
+  memory: 512M
+  path: .
+  env:
+    serviceurl: https://mathematics-service.cfapps.sap.hana.ondemand.com
