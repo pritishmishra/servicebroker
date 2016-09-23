@@ -10,37 +10,28 @@ app.use(bodyParser.urlencoded({
 // This is invoked by the Cloud Foundry Runtime, during service broker creation
 // & marketplace search
 app.get('/v2/catalog', function(req, res){
-	res.status(200).json({
+	res.status(200).json(
+		{
    "services":[
       {
 	 "id":"demo-service-id",
          "name":"demo-as-a-service",
-         "description":"This is a demo service.",
+         "description":"this is a demo service",
 	 "bindable": true,
-         "requires":[
-
-         ],
-         "tags":[
-            "demo",
-            "crud",
-         ],
+         "requires":[],
+         "tags":["demo","testing"],
          "metadata":{
-            "displayName":"Demo Service",
-            "imageUrl":"",
-            "longDescription":"This is just a demo service",
-            "providerDisplayName":"Pritish Mishra",
+            "displayName":"Demo service broker",
+            "longDescription":"this is a demo service broker",
+            "providerDisplayName":"Pritish Mishra"
          },
-	},
          "plans":[
             {
                "id":"024f3452-67f8-40bc-a724-a20c4ea24b1c",
-		"name":"simple demo service",
+		"name":"simple-broker-planr",
                "description":"A small-sized plan",
                "metadata":{
-                  "bullets":[
-                     "20 calculations",
-                     "20 operations"
-                  ],
+                  "bullets":["20 calculations","20 operations"],
                   "costs":[
                      {
                         "amount":{
@@ -63,5 +54,8 @@ app.get('/v2/catalog', function(req, res){
          ]
       }
    ]
-});
+}
+		
+		);
+	
 });
