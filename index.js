@@ -63,3 +63,35 @@ app.get('/v2/catalog', function(req, res){
 var server = app.listen(process.env.PORT || 8002, function () {
 	console.log('Service Broker running');
 });
+
+// Endpoint invoked by Cloud Foundry when a service instance is created (cf
+// create-service)
+app.put('/v2/service_instances/:id', function(req, res){res.status(201).json({})});
+
+// Endpoint invoked by Cloud Foundry if the service instance is upgraded (plan
+// upgrades etc)
+app.patch('/v2/service_instances/:id', function(req, res){res.status(200).json({})});
+
+// Endpoint invoked by Cloud Foundry when an app is bound to a service instance
+// (cf bind-service)
+app.put('/v2/service_instances/:instance_id/service_bindings/:binding_id', function(req,res){
+	res.status(200).json({
+		credentials: {
+			url: process.env.serviceurl,
+			user: 'dummy',
+			password: 'dummy'
+		}
+	})
+});
+
+// Endpoint invoked by Cloud Foundry when a service binding is deleted (cf
+// unbind-service)
+app.delete('/v2/service_instances/:instance_id/service_bindings/:binding_id', function(req, res){
+	res.status(200).json({});
+});
+
+// Endpoint invoked by Cloud Foundry when a service instance is deleted (cf
+// delete-service)
+app.delete('/v2/service_instances/:instance_id', function(req, res){
+	res.status(200).send({});
+});
